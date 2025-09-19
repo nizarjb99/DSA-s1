@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -11,6 +12,7 @@ public class Main {
             return Double.compare(this.area(), s.area());
         }
     }
+
     public static class Rectangle extends Shape {
         private double l1;
         private double l2;
@@ -22,6 +24,12 @@ public class Main {
 
         public double area() {
             return l1 * l2;
+        }
+    }
+
+    public static class Square extends Rectangle {
+        public Square(double l) {
+            super(l, l);
         }
     }
 
@@ -51,27 +59,25 @@ public class Main {
         }
     }
 
-    static double sum(Shape[] s) {
+    static double sum(Shape[] v) {
+        double sum = 0;
 
+        for (Shape s : v) {
+            sum += s.area();
+        }
+
+        return sum;
     }
 
     static void sort(Shape[] v) {
-        int i = 0;
-        for(Shape s : v) {
-            boolean found = false;
-            int j = 0;
+        Arrays.sort(v);
+    }
 
-            while (!found || j >= i) {
-                if (s.compareTo(v[j]) < 0) {
-                    found = true;
-
-                    v[i] = v[j];
-                    v[j] = s;
-                }
-                j++;
-            }
-            i++;
+    static void print(Shape[] v) {
+        for (Shape s : v) {
+            System.out.println("Àrea: " + s.area());
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
